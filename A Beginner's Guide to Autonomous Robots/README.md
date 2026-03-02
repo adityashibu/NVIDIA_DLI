@@ -1,94 +1,37 @@
 # A Beginner's Guide to Autonomous Robots
-This section contains notes for the topic "A Beginner's Guide to Autonomous Robots"
 
-## Robotic Systems and Architectures
-![System Architecture](images/sys_arch.png)
-- **Perception and Localization:** Utilizes sensors such as cameras and LIDAR, along with mapping systems, to assess the environment and determine the robot’s position and state.
+This section contains comprehensive notes for the topic "A Beginner's Guide to Autonomous Robots". Content is organized into topic-specific sections for easier navigation and future expansion.
 
-- **Planning:** Planning involves multiple stages.
-    - **Global Planning:** Similar to setting a route on a map, defining the mission and waypoints to reach a goal.
-    - **Behavior Planning:** Determines actions, such as which object to manipulate and how.
-    - **Local Planning:** Generates trajectories for specific tasks, guiding the robot through precise paths.
+## Table of Contents
 
-- **Control and Actuation:** The controller tracks trajectory states to execute movements, whether for manipulation or navigation. Outcomes are tested in both virtual simulations and real-world scenarios.
+### 1. [Robotic Systems and Architectures](01-systems-and-architectures/README.md)
+Overview of robotic system components including perception, localization, planning, control, actuation, and feedback loops.
 
-- **Feedback Loop:** Continuously gathers data from sensors and localization to refine planning and improve system performance. This iterative process ensures adaptive and responsive robot behavior.
+### 2. [Sensing](02-sensing/README.md)
+Comprehensive guide to sensors used in robotics:
+- Camera types (Monocular, Stereo, RGB-D, Thermal, Event-Based)
+- LiDAR types (2D, 3D, Solid-State)
+- Other sensors (Ultrasonic, Radar, GPS, IMU, Wheel Encoders, Magnetic, Environmental, Touch)
 
-## Enabling Autonomous Robots
-### Sensing
-Sensing is crucial for enabling autonomous robots to understand their environment. This overview explores the different types of cameras and sensors used in robotics, highlighting their unique advantages and applications.
+### 3. [Perception](03-perception/README.md)
+How robots understand their environment through sensor fusion, object detection and recognition, object tracking, and scene understanding.
 
-Following are different types of sensors used for sensing along with their pros, and their uses.
-| Camera Type | Pros | Uses |
-| --- | --- | --- |
-| **Monocular Cameras** (single-lens cameras that capture 2D images) | Simple, cost effective, widely available | Basic object detection, image recognition, simple navigation tasks |
-| **Stereo Cameras** (two lenses capturing images simultaneously, mimicking human binocular vision) | Depth perception, 3D information | Obstacle avoidance, 3D mapping |
-| **RGB-D Cameras** (RGB color imaging with depth sensing) | 2D color images with depth perception and 3D information | Advanced navigation, object manipulation and interaction |
-| **Thermal Cameras** (create images based on temperature differences) | Effective in dark environments, effective through smoke or fog | Search and rescue missions, surveillance operations |
-| **Event-Based Cameras** (capture brightness changes/events) | High temporal resolution and low latency | High-speed motion detection and tracking |
-<br>
+### 4. [Localization and Mapping](04-localization-and-mapping/README.md)
+Techniques for determining robot position and creating environment maps:
+- Localization methods (GPS, Visual Odometry, LiDAR)
+- Mapping techniques (SLAM, Occupancy Grid)
 
+### 5. [Navigation and Path Planning](05-navigation-and-path-planning/README.md)
+Classical navigation systems including:
+- Routing and mission planning algorithms (A*, D*, RRT)
+- Motion planning and trajectory generation
+- Obstacle avoidance strategies
 
-| LiDAR Type | Pros | Uses |
-| --- | --- | --- |
-| **2D LiDAR** (LiDAR that only shoot beams along 2D plane (X, Y)) | Simple, cheaper, and faster but limited functionality | Basic planar navigation and obstacle detection |
-| **3D LiDAR** (LiDAR that shoots beams along a 3D plane (X, Y, Z)) | Detailed spatial information, wide field of view, and high resolution | Autonomous vehicle mapping |
-| **Solid-State, Flash, and MEMS Lidar** (Laser pulses to measure distances) | Measure distances like other LiDARs and detailed maps | Autonomous vehicle mapping |
-<br>
+### 6. [Control Systems](06-control-systems/README.md)
+Control algorithms that enable robots to follow planned paths:
+- Feedback control and PID
+- Trajectory tracking with MPC
 
+---
 
-| Sensor Type | Pros | Uses |
-| --- | --- | --- |
-| **Ultrasonic Sensors** | Affordable and commonly used in low-cost robots | Distance measurement based on echo return time, home vacuum cleaners |
-| **Radar** | Reliable in diverse conditions, provides distance, speed, and size information | Robotaxis |
-| **GPS** | Essential for outdoor localization | Outdoor localization and navigation |
-| **IMU (Inertial Measurement Unit)** | Measures acceleration and rotational rates to track motion and orientation, widely used in mobile robots | Motion tracking and orientation estimation |
-| **Wheel Encoders** | Measure wheel rotation to determine travel distance | Odometry and distance tracking |
-| **Magnetic Sensors (Compasses)** | Detect the Earth’s magnetic field to determine orientation and heading | Heading estimation and orientation reference |
-| **Environmental Sensors** | Measure temperature, humidity, and air quality | Environmental monitoring |
-| **Touch Sensors** | Cost-effective and useful for detecting contact, commonly used in household robots | Contact detection and collision sensing |
-
-
-### Perception
-Perception is crucial for enabling autonomous robots to understand their environment. Just as humans use a combination of senses like sight, hearing, and touch to interpret the world around them, robots rely on sensor fusion. This process integrates data from multiple sensors to create a detailed and accurate representation of the environment.
-
-**Key components of perception:**
-- **Sensor Fusion:** As the name suggests, Fusion of data from multiple different sensors to provide a detailed view of the surroundings.
-- **Object Detection and Recognition:** Identifies and classifies different objects within the robot's environment.
-- **Object Tracking:** Continuously track/follow an object as it moves, similar to how our eyes move to follow an object.
-- **Scene Understanding:** Understand the overall context of what the robot is seeing so it can make informed decisions.
-
-
-### Localization and Mapping
-Localization and mapping are essential for robots to navigate and interact with their environment effectively. Imagine a robot as a traveler who needs a map and a compass to explore unfamiliar territory. These processes enable the robot to determine its position and create a map of its surroundings.
-
-**Why Localization?**
-Localization helps the robot identify its position within an environment. Without localization the robot would be a lost sailor at sea. In tasks like trajectory following or tracking, it is essential that the robot knows the exact position so it can follow the intended path accurately.
-- **GPS (Global Positioning System):** Used outside (most of the time) to provide location data.
-- **Visual Odometry:** Uses the camera to estimate movement, making it a computational task.
-- **LiDAR based localization:** Matches the current position map with pre-existing map using LiDAR.
-
-**Mapping Techniques:**
-- **SLAM (Simultaneous Localization and Mapping):** A technique where robots both localize and map at the same time.
-- **Occupancy Grid:** Represents the environment as grids with each cell indicating the probability of being occupied.
-
-
-### Navigation and Path Planning
-Navigation and Path Planning are important to ensure that robots can move efficiently and safely through their environments. This involves several layers of planning, each with a specific focus.
-
-**Classical Navigation Systems**
-- Routing and Mission Planning uses algorithms such as A*, D*, and RRT (Rapidly-exploring Random Tree). This is similar to getting decisions at an intersection deciding whether to go left or right. Most of the time this along isn't enough so we bring in motion planning.
-- Motion planning generates a sequence of movements for the robot to follow, allowing for a planned path along with obstacle avoidance. It usually takes a few seconds to process both the decision making and trajectory generation.
-    - **Decision Making:** Focuses on behavior planning and interactions, such as deciding whether to navigate around obstacles like pallets or yield to moving forklifts.
-    - **Trajectory Generation:** Involves creating a time-based trajectory, detailing speed, acceleration, and heading angles for precise control.
-- Obstacle Avoidance also fall under two different categories
-    - **Real-Time Detection:** Ensuring safety by detecting and avoiding obstacles in real-time.
-    - **Reactive Navigation:** Uses sensors to make immediate adjustments, acting as a backup when the main autonomy system fails to detect obstacles.
-
-
-### Control Systems in Robotics
-Once a robot’s trajectory and target states are defined, the control system translates this information into commands for the robot’s actuators. This ensures that the robot follows the planned path accurately.
-
-**Feedback control** adjust the robot's actions based on sensor feedback to achieve desired behaviors. A common method for feedback control is **PID (Proportional-Integral-Derivative) control**. PID is a widely used algorithm that minimizes the error between desired and actual positions by continuously adjusting movements. It operates by comparing the desired trajectory states with actual states obtained from localization data and making real-time corrections.
-
-**Trajectory Tracking** is used to ensure that the robot accurately follows the planning path. One common algorithm used for this is MPC **(Model Predictive Control)**. MPC is an advanced control algorithm that optimizes the robot’s path using a predictive model of its behavior. MPC is more complex than PID control and is often used for precise trajectory tracking and whole-body control in humanoid robots.
+**Quick Navigation:** Each section has its own README with detailed information. Click any link above to explore that topic in depth.
